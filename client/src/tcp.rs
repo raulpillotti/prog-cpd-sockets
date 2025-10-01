@@ -3,7 +3,7 @@ use std::io::{Read, Write, BufReader};
 use std::net::TcpStream;
 use std::thread;
 
-const BUFFER_SIZE: usize = 8192;
+const BUFFER_SIZE: usize = 1024 * 8;
 
 pub struct Tcp {
     pub server_thread: thread::JoinHandle<()>,

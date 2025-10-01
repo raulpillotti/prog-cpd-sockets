@@ -2,7 +2,7 @@ use std::io::Write;
 use std::net::UdpSocket;
 use std::thread;
 
-const BUFFER_SIZE: usize = 8192;
+const BUFFER_SIZE: usize = 1024;
 
 pub struct Udp {
     pub server_thread: thread::JoinHandle<()>,
