@@ -4,7 +4,7 @@ use std::thread;
 use std::fs::File;
 use std::time::Instant;
 
-const BUFFER_SIZE: usize = 1024;
+const BUFFER_SIZE: usize = 1024 * 16;
 
 pub struct Udp {
     pub server_thread: thread::JoinHandle<()>,
