@@ -35,9 +35,8 @@ impl Tcp {
                     }
 
                     let elapsed = start.elapsed();
-                    let msg = format!("{:?}", elapsed.as_millis());
-                    println!("Arquivo enviado: {:?} ms", elapsed.as_millis());
-                    let _ = client_socket.write_all(msg.as_bytes());
+                    let msg = format!("\nResp: {:?} ms", elapsed.as_millis());
+                    client_socket.write_all(msg.as_bytes()).expect("erro enviando mensagem");
                 }
             }
         });

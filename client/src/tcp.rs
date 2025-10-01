@@ -22,7 +22,17 @@ impl Tcp {
             loop {
                 let bytes = match stream.read(&mut buffer) {
                     Ok(0) => break,
-                    Ok(n) => n,
+                    Ok(n) => {
+                        if n < BUFFER_SIZE {
+                            let resp = String::from_utf8_lossy(&buffer[..n]);
+                            for line in resp.lines() {
+                                if line.contains("Resp") {
+                                    println!("Resposta do servidor: {line}");
+                                }
+                            }
+                        }
+                        n
+                    },
                     Err(e) => {
                         eprintln!("Erro lendo arquivo: {}", e);
                         return;
