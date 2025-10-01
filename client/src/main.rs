@@ -13,7 +13,8 @@ fn main() {
             let _ = tcp.server_thread.join();
         },
         "udp" => {
-            let udp = udp::Udp::new();
+            let client_addr = args.get(4).expect("Argumento inválido");
+            let udp = udp::Udp::new(file_path, server_addr, client_addr);
             let _ = udp.server_thread.join();
         }
         _ => panic!("Argumento inválido")

@@ -6,17 +6,18 @@ fn main() {
 
     let mode = args.get(1).expect("Argumento inválido").as_str();
     let file_path = args.get(2).expect("Argumento inválido");
+    let server_addr = args.get(3).expect("Argumento inválido");
     println!("path: {file_path}");
     // let client_addr = args.get(3).expect("Argumento inválido");
 
     match mode {
         "tcp" => {
-            let tcp = tcp::Tcp::new(file_path);
+            let tcp = tcp::Tcp::new(file_path, server_addr);
             let _ = tcp.server_thread.join();
         },
         "udp" => {
-            // let udp = udp::Udp::new(file_path, client_addr);
-            // let _ = udp.server_thread.join();
+            let udp = udp::Udp::new(file_path, server_addr);
+            let _ = udp.server_thread.join();
         }
         _ => panic!("Argumento inválido")
     }

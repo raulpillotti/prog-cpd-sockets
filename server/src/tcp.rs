@@ -11,11 +11,12 @@ pub struct Tcp {
 }
 
 impl Tcp {
-    pub fn new(file_path: &str) -> Self {
+    pub fn new(file_path: &str, addr: &str) -> Self {
         let file_path = file_path.to_string();
+        let addr = addr.to_string();
         let handle = thread::spawn(move || {
-            let listener = TcpListener::bind("127.0.0.1:8084").expect("Falha ao iniciar servidor TCP");
-            println!("Servidor TCP escutando em 127.0.0.1:8084");
+            let listener = TcpListener::bind(&addr).expect("Falha ao iniciar servidor TCP");
+            println!("Servidor TCP escutando em {addr}");
 
             loop {
                 if let Ok((mut client_socket, addr)) = listener.accept() {
